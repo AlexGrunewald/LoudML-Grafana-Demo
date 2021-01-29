@@ -1,0 +1,27 @@
+---
+buckets:
+ - name: influxdb
+   type: influxdb
+   addr: influxdb:8086  
+   database: _internal
+   retention_policy: monitor
+   measurement: loudml
+   max_series_per_request: 2000
+ - name: loudml
+   type: influxdb
+   addr: influxdb:8086  
+   database: loudml
+   retention_policy: autogen
+   measurement: loudml
+   max_series_per_request: 2000
+   annotation_db: mydb
+
+storage:
+  path: /var/lib/loudml
+
+server:
+  listen: 0.0.0.0:8077
+
+
+
+

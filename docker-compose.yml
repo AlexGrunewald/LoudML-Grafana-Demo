@@ -1,0 +1,42 @@
+version: "2"
+
+services:
+
+  grafana:
+    image: grafana/grafana:7.0.0
+    container_name: grafana
+    ports: 
+        - "3000:3000"
+    depends_on:
+        - influxdb
+        - loudml
+    environment:
+        - GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.7.1.zip;loudml-grafana-app
+        - INFLUXDB_URL=http://influxdb:8086
+        - LOUDML_URL=http://loudml:8077
+
+
+
+
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+       - "8086:8086"
+    volumes:
+       - "./:/var/lib/influxdb"
+
+  loudml:
+    image: loudml/loudml:1.6.0
+    container_name: loudml
+    ports:
+       - "8077:8077"
+    volumes:
+       - "./config.yml:/etc/loudml/config.yml:ro"
+       - "./lib/loudml:/var/lib/loudml:rw"
+    depends_on:
+       - influxdb
+
+
+      
+   

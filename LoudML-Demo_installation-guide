@@ -1,0 +1,47 @@
+Vorbereitung: 
+
+Nachdem die Container hochgefahren sind, fuehe die nachfolgenden Commands aus, um auf dem Loud-ML Container die aktuelle Version von Python yu installierne, da der Server ansonten die Influx-Datenbanken nicht aus der Config.yml anlegt.
+
+------------------------------------------------------------------------------------------------------------
+
+docker exec -it -u 0 loudml  bash
+
+apt-get update && apt-get install -y python3-pip python3-setuptools python3-dev && apt-get install -y --no-install-recommends build-essential gcc git && apt-get purge -y
+
+------------------------------------------------------------------------------------------------------------
+
+Ausserdem sollte noch eine weitere Datenbank in InfluxDb mittels curl angelegt werden. Hierzu kann das nachfolgende Command benutzt werden.
+
+------------------------------------------------------------------------------------------------------------
+
+curl -XPOST 'http://0.0.0.0:8086/query' --data-urlencode 'q=CREATE DATABASE "mydb"'
+
+------------------------------------------------------------------------------------------------------------
+
+Nachdem alle Vorbereitungen getroffen wurden und alle Container laufen, besteht der naechste Schritt darin
+die Influx-Datenbanken in Grafana als Datenquellen hinzuzufuegen.
+Daze kann auf die Grafana Oberflaeche unter http://0.0.0.0:3000/ zugegriffen werden. Die Login Credentials sind admin/admin.
+
+Nun kann man unter Configuration->Data Sources auf "Add data source" klicken, um die Test Datenbank einzubinden. 
+
+URL: http://influxdb:8086
+Database: _internal
+
+
+Nachdem die Datenbank eingebunden ist, kann man unter Create->Dashboards ein neues Dashboard bzw. ein neues Panel anlegen. Hierzu klickt man auf "Add new panel". In diesem Panel kann dann der nachfolgende Query eingepflegt werden.
+
+------------------------------------------------------------------------------------------------------------
+
+SELECT mean("Alloc") FROM "monitor"."runtime" WHERE $timeFilter GROUP BY time(1m) fill(previous)
+
+------------------------------------------------------------------------------------------------------------
+
+Anschliessend kann das Dashboard gespeichert werden. Nun kann der Loud-ML Server als Data Source hinzugefuegt werden. Hierzu sollte zuvor das Loud-ML Plugin unter Configuration->Plugins aktiviert werden. Ist dies geschehen, kann der Loud-ML Server unter Configuration->Data Sources eingebunden werden.
+
+URL: http://loudml:8077/
+
+Nun sollte man in der Lage sein in dem zuvor erstellen Panel unter Visualisierungen die Loud ML Graph Darstellung auszuwaehlen. Unter Display sollte dann der eben hinzugefueghte Server ausgewaehlt werden, sowie unter Input Bucket "influxdb" eingetragen werden.
+
+Nun sollte das Panel wie in der nachfolgenden Grafik aussehen und oben links die Option "Create Baseline" anbieten. Diese kann nun geklickt werden, um ein Machine Learning Modell auf Basis der vorher gewaehlten Daten zu trainieren. Sollte dies nicht auf anhieb klappen, liegt es daran, das noch nicht genuegend Daten zum trainieren des Models zur verfuegung stehen. 
+
+

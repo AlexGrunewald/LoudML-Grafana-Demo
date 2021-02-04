@@ -31,5 +31,11 @@ curl -XPOST 'http://0.0.0.0:8086/query' --data-urlencode 'q=CREATE DATABASE "myd
 ## Benutzung
 
 Nachdem die Installation erfolgreich abgeschlossen wurde, kann damit begonnen werden die Demo Umgebung einzurichten. 
-Hierzu öffnet man die Grafana Weboberfläche, welche unter <http://0.0.0.0:3000/> erreichbar sein sollte.
+Hierzu öffnet man die Grafana Weboberfläche, welche unter <http://0.0.0.0:3000/> erreichbar sein sollte. Die Login Credentials lauten admin/admin.
+Nun kann man unter den Configuration die InfluxDB als Data Source hinzufügen mithilfe der folgenden Werte: 
+
+```bash
+URL: http://influxdb:8086
+Database: _internal
+```
 

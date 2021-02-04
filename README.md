@@ -50,4 +50,4 @@ URL: http://loudml:8077/
 Nachdem dies geschehen ist, geht man zurück auf das zuvor erstelle Panel. Nun sollte, wenn man dieses editieren will, die Option "Loud ML Graph" unter Visualisierungen verfügbar sein. Wählt man diese aus, muss anschließedn noch noch unter Display das Input- und Output-Bucket ausgewählt werden. Im falle dieser Demo, ist das Input-Bucket "influxdb" und das Output-Bucket "loudml". Beide Buckets wurden automatisch durch die Config.yml in Loud ML erstellt und müssen nicht händdisch konfiguriert werden. 
 
 Nachdem diese Einstellungen vorgenommen wurden, sollte das Panel wie in der nachfolgenden Grafik aussehen:
-![Loud ML Graph Panel](https://github.com/AlexGrunewald/LoudML-Grafana-Demo/blob/main/img/loudml-config.png"Loud ML Graph Panel")
+![Loud ML Graph Panel](https://github.com/AlexGrunewald/LoudML-Grafana-Demo/img/loudml-config.png "Loud ML Graph Panel")

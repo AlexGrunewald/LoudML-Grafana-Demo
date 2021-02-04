@@ -51,3 +51,9 @@ Nachdem dies geschehen ist, geht man zurück auf das zuvor erstelle Panel. Nun s
 
 Nachdem diese Einstellungen vorgenommen wurden, sollte das Panel wie in der nachfolgenden Grafik aussehen:
 ![Loud ML Graph Panel](https://github.com/AlexGrunewald/LoudML-Grafana-Demo/blob/main/img/loudml_dashboard_plugin.png "Loud ML Graph Panel")
+
+Nun kann im nächsten Schritt das Machine Learning Modell trainiert werden, indem die Schaltfläche "Create Baseline" auf dem Panel geklickt wird. Der Loud ML Server erstellt nun eine Baseline für die gefragten Daten. Dies kann einige Zeit in Anspruch nehmen.
+**Note:** Sollte das erstllen einer Baseline fehlschlagen, kann das auf die fehlenden Datenpunkte zurückzuführen sein. Hierzu muss die Demo Umgebung erst eine Weile laufen, damit genügend Daten in der Datenbank vorhanden sind, damit der Algorithmus genügend Ansatzpunkte hat.
+
+
+

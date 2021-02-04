@@ -33,9 +33,18 @@ curl -XPOST 'http://0.0.0.0:8086/query' --data-urlencode 'q=CREATE DATABASE "myd
 Nachdem die Installation erfolgreich abgeschlossen wurde, kann damit begonnen werden die Demo Umgebung einzurichten. 
 Hierzu öffnet man die Grafana Weboberfläche, welche unter <http://0.0.0.0:3000/> erreichbar sein sollte. Die Login Credentials lauten admin/admin.
 Nun kann man unter den Configuration die InfluxDB als Data Source hinzufügen mithilfe der folgenden Werte: 
-
 ```bash
 URL: http://influxdb:8086
 Database: _internal
 ```
+Nachdem die Datenbank eingebunden ist, kann man unter Dashboards sich ein neues Panel anlegen, welchen den nachfolgenden Query umsetzt:
 
+```bash
+SELECT mean("Alloc") FROM "monitor"."runtime" WHERE $timeFilter GROUP BY time(1m) fill(previous)
+```
+Anschließend kann das Dashboard gespeichert werden. Nun kann der Loud-ML Server als Data Source hinzugefügt werden. Hierzu sollte zuvor das Loud-ML Plugin unter Configuration->Plugins aktiviert werden. Ist dies geschehen, kann der Loud-ML Server unter Configuration, wie zuvor auch schon die InfluxDB eingebunden werden. Hierzu fügt man einfach die URL ein, unter welcher der Loud ML Server erreichbar ist. Im Fall dieser Demo Umgebung ist dieser unter der folgenden Adresse für Grafana erreichbar:
+
+```bash
+URL: http://loudml:8077/
+```
+Nachdem dies geschehen ist, geht man zurück auf das zuvor erstelle Panel. Nun sollte, wenn man dieses editieren will, die Option "Loud ML Graph" unter Visualisierungen verfügbar sein. Wählt man diese aus, muss anschließedn noch das Input- und Output-Bucket ausgewählt werden. Im falle dieser Demo, ist das Input-Bucket "influxdb" und das Output-Bucket "loudml". Beide Buckets wurden automatisch durch die Config.yml in Loud ML erstellt und müssen nicht händdisch konfiguriert werden. 

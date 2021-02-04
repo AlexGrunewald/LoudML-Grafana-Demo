@@ -47,4 +47,7 @@ Anschließend kann das Dashboard gespeichert werden. Nun kann der Loud-ML Server
 ```bash
 URL: http://loudml:8077/
 ```
-Nachdem dies geschehen ist, geht man zurück auf das zuvor erstelle Panel. Nun sollte, wenn man dieses editieren will, die Option "Loud ML Graph" unter Visualisierungen verfügbar sein. Wählt man diese aus, muss anschließedn noch das Input- und Output-Bucket ausgewählt werden. Im falle dieser Demo, ist das Input-Bucket "influxdb" und das Output-Bucket "loudml". Beide Buckets wurden automatisch durch die Config.yml in Loud ML erstellt und müssen nicht händdisch konfiguriert werden. 
+Nachdem dies geschehen ist, geht man zurück auf das zuvor erstelle Panel. Nun sollte, wenn man dieses editieren will, die Option "Loud ML Graph" unter Visualisierungen verfügbar sein. Wählt man diese aus, muss anschließedn noch noch unter Display das Input- und Output-Bucket ausgewählt werden. Im falle dieser Demo, ist das Input-Bucket "influxdb" und das Output-Bucket "loudml". Beide Buckets wurden automatisch durch die Config.yml in Loud ML erstellt und müssen nicht händdisch konfiguriert werden. 
+
+Nachdem diese Einstellungen vorgenommen wurden, sollte das Panel wie in der nachfolgenden Grafik aussehen:
+

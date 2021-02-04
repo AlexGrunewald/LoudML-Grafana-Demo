@@ -1,7 +1,7 @@
 # LoudML-Grafana-Demo
 Diese Demo Andwendung verbindet Loud ML für das Anwenden von Machine Learning auf Metrik basierte Daten und die Integration von Loud ML in eine Grafana Oberfläche.
 
-## Installation
+# Installation
 
 ```bash
 docker compose -f docker-compose.yml up
@@ -9,7 +9,7 @@ docker compose -f docker-compose.yml up
 
 Nachdem alle Container hochgefahren wurden, müssen noch zusätzlich noch zwei kleine Anpassungen vorgenommen werden, damit die Demo Anwendung funktioniert.
 
-### Aktualisieren der Python Bibliotheken auf dem Loud ML Server
+## Aktualisieren der Python Bibliotheken auf dem Loud ML Server
 
 ```bash
 docker exec -it -u 0 loudml  bash
@@ -20,7 +20,7 @@ Mit diesem Befehl gelangt man auf die Shell des Loud ML Containers. Nun führt m
 apt-get update && apt-get install -y python3-pip python3-setuptools python3-dev && apt-get install -y --no-install-recommends build-essential gcc git && apt-get purge -y
 ```
 
-### Hinzufügen einer Output Datenbank in die InfluxDB
+## Hinzufügen einer Output Datenbank in die InfluxDB
 
 Damit die von Loud ML erzeugten Daten auch in der InfluxDB abgespeichert werden, muss im nächsten Schritt noch mittels Curl eine weitere Datenbank angelegt werden. Hierzu kann der nachfolgende Befehl einfach kopiert und eingefügt werden.
 
@@ -28,7 +28,7 @@ Damit die von Loud ML erzeugten Daten auch in der InfluxDB abgespeichert werden,
 curl -XPOST 'http://0.0.0.0:8086/query' --data-urlencode 'q=CREATE DATABASE "mydb"'
 ```
 
-## Benutzung
+# Benutzung
 
 Nachdem die Installation erfolgreich abgeschlossen wurde, kann damit begonnen werden die Demo Umgebung einzurichten. 
 Hierzu öffnet man die Grafana Weboberfläche, welche unter <http://0.0.0.0:3000/> erreichbar sein sollte. Die Login Credentials lauten admin/admin.
@@ -67,5 +67,8 @@ Database: loudml
 Im letzten Schritt kann dann das Panel noch angepasst werden, um die Machine Learning Daten als Overlay anzeigen zu lassen. Hierzu kann das Panel wie in folgender Grafik angepasst werden:
 ![Loud ML Graph Panel](https://github.com/AlexGrunewald/LoudML-Grafana-Demo/blob/main/img/Screenshot%202021-01-29%20110451.png "Loud ML Graph Panel")
 
+Nun ist man in der Lage die Machine Learning Daten auf einem Blick als Overlay anzeigen zu lassen.
 
-
+# Feauture Work
+- Eine Anleitung wie Annotations zum Panel hinzugefügt werden
+- Ein weiteres Machine Learning Modell neben dem Donut Modell in Loud ML implementieren

@@ -3,6 +3,6 @@ Diese Demo Andwendung verbindet Loud ML für das Anwenden von Machine Learning a
 
 ## Installation
 
-'''bash
+```bash
 docker compose -f docker-compose.yml up
-'''
+```

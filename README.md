@@ -18,5 +18,18 @@ Mit diesem Befehl gelangt man auf die Shell des Loud ML Containers. Nun führt m
 
 ```bash
 apt-get update && apt-get install -y python3-pip python3-setuptools python3-dev && apt-get install -y --no-install-recommends build-essential gcc git && apt-get purge -y
-´´´
+```
+
+### Hinzufügen einer Output Datenbank in die InfluxDB
+
+Damit die von Loud ML erzeugten Daten auch in der InfluxDB abgespeichert werden, muss im nächsten Schritt noch mittels Curl eine weitere Datenbank angelegt werden. Hierzu kann der nachfolgende Befehl einfach kopiert und eingefügt werden.
+
+```bash
+curl -XPOST 'http://0.0.0.0:8086/query' --data-urlencode 'q=CREATE DATABASE "mydb"'
+```
+
+## Benutzung
+
+Nachdem die Installation erfolgreich abgeschlossen wurde, kann damit begonnen werden die Demo Umgebung einzurichten. 
+Hierzu öffnet man die Grafana Weboberfläche, welche unter <http://0.0.0.0:3000/> erreichbar sein sollte.
 

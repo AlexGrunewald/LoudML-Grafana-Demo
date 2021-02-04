@@ -69,6 +69,6 @@ Im letzten Schritt kann dann das Panel noch angepasst werden, um die Machine Lea
 
 Nun ist man in der Lage die Machine Learning Daten auf einem Blick als Overlay anzeigen zu lassen.
 
-# Feauture Work
+# Future Work
 - Eine Anleitung wie Annotations zum Panel hinzugefügt werden
 - Ein weiteres Machine Learning Modell neben dem Donut Modell in Loud ML implementieren

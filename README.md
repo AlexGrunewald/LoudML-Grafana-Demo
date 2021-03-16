@@ -69,6 +69,21 @@ Im letzten Schritt kann dann das Panel noch angepasst werden, um die Machine Lea
 
 Nun ist man in der Lage die Machine Learning Daten auf einem Blick als Overlay anzeigen zu lassen.
 
+# Hinzufügen von Annotationen
+
+Um Annotationen hinzuzufügen, muss zunächst eine weitere Datenquelle angelegt werden. Loud ML speichert die Anomalien standartmäßig in der Datenbank Chronograf, weshalb die Parameter für die Annotation-Quelle folgendermaßen aussieht:
+
+```bash
+URL: http://influxdb:8086
+Database: chronograf
+```
+Nachdem diese hinzugefügt wurde, kann unter den Dashboard Settings die Option Annotations ausgewählt und ein neuer Annotations-Query angelegt werden. Als Datenquelle gibt man hier dann die zuvor angelegt Quelle an, sowie den folgenden Query:
+
+```bash
+SELECT "text" FROM "autogen"."annotations" WHERE $timeFilter
+```
+Anschließend speichert man alles und die von Loud ML gefundenen Anomalien sollten nun als Annotation am entsprechenden Graphen angezeigt werden.
+
 # Future Work
 - Eine Anleitung wie Annotations zum Panel hinzugefügt werden
 - Ein weiteres Machine Learning Modell neben dem Donut Modell in Loud ML implementieren
